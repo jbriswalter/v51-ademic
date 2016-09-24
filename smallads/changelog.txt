@@ -1,0 +1,83 @@
+/* --------------------------------------------------------
+/*                          Module Smallads
+/*
+/*                            -------------------
+ *   begin                : June 23, 2016
+ *   copyright            : (C) 2016 Sebastien LARTIGUE
+ *   email                : babsolune@phpboost.com
+ *
+ *
+ ###################################################
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+ *
+ ###################################################*/
+
+/**
+ * @author Sebastien LARTIGUE <babsolune@phpboost.com>
+ */
+ 
+ /* =================================================*/
+ 
+ /* ##### #####    ####   #####    #     ##### ##### #####
+ /*   #   #   #    #   #  #   #    #       #   #       #
+ /*   #   #   #    #    # #   #    #       #   #####   #
+ /*   #   #   #    #   #  #   #    #       #       #   #
+ /*   #   #####    ####   #####    ##### ##### #####   #
+ */
+  
+ Variables de langue : English
+ 
+ Menu catégorie -> gérer les sous catégories 
+ 
+ Ajout des options de l'annonce :  
+ 
+ Ajouter les filtres
+ - catégories
+ - type d'annonce (achete, vend ...)
+ 
+ Nb de semaine d'affichage => modifier publication
+
+ Notification "Nouveau" => visiteur + membre : une semaine depuis parution / membre depuis dernière connexion + une semaine
+ 
+ Gestion par l'auteur ( voir avec Jul pour édition par membre car pour l'instant impossible)
+ page auteur = liste des annonces de l'auteur
+ Notification Vendu => suppression de l'annonce le lendemain (24h) en automatique si date butoire pas atteinte
+ Modifier l'annonce
+ Remonter en tete de liste
+ Supprimer l'annonce ()
+ 
+ 
+ /* #####  #   #  #####  #   #  #####  #####  #      #####  #####
+ /* #      #   #  #   #  ##  #  #      #      #      #   #  #
+ /* #      #####  #####  # # #  #  ##  #####  #      #   #  #  ##
+ /* #      #   #  #   #  #  ##  #   #  #      #      #   #  #   #
+ /* #####  #   #  #   #  #   #  #####  #####  #####  #####  #####
+ */
+11/08/2016
+Modification des catégories pour passage en 5.1
+
+27/06/2016
+ Ajout menu catégories => bug categorie enfant
+ fix bug ajout d'annonce
+ Ajout option vendu
+ Ajout option Achète Vend Donne Echange
+ Ajout nombre de vues, prix, carrousel, couleur, détails
+ 
+23/06/2016 ---------------------------------------- Version 0.0.1
+ Base: module news
+ Ajout d'options dans le formulaire
+ mail "répondre à l'annonce" en php
+ MiniModule => affichage de la dernière annonce + nombre d'annonces dans le module
