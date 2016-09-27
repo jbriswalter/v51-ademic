@@ -30,7 +30,7 @@
 ####################################################
 
 //Titre du module
-$lang['module_title'] = 'Le Calendrier';
+$lang['module_title'] = 'Calendrier';
 $lang['module_config_title'] = 'Configuration du calendrier';
 
 //Messages divers
