@@ -16,11 +16,12 @@ update/update_followed.txt
 HomeCustom
 
 !templates
-# Ignore le répertoire des thèmes:
+# Ignore le rï¿½pertoire des thï¿½mes:
 templates/*.*
 templates/*
 
-# Sauf les thèmes suivants :
+# Sauf les thï¿½mes suivants :
 !templates/base
 !templates/default
 !templates/phpboost
+/nbproject/private/
