@@ -122,3 +122,54 @@ table tbody tr th.column-title {
 .legend {
 	padding-right: 20px;
 }
+
+.openmodal-calendar-list-suscribe {
+    position: fixed;
+    z-index: 4;
+    width: 50%;
+    height: 75%;
+    opacity:0;
+    pointer-events: none;
+    font-size: 1.2rem;
+    color: #F5F5F5;
+    overflow: hidden;
+    transition: all 0.3s ease 0s;
+}
+
+.openmodal-calendar-list-suscribe:target {
+    top: 20px;
+    left: 400px;
+    opacity: 1.0;
+    padding: 30px 20px;
+    overflow-y: auto;
+    background-color: #D4D4D4;
+    pointer-events: auto;
+    transition: all 0.3s ease 0s;
+    border-radius: 80px;
+}
+
+.close-calendar-list-suscribe {
+	margin-top: 3px;
+	margin-right: 45px;
+    font-size: 12px;
+    padding: 4px 8px;
+    background-color: #8ECF67;
+	color: black;
+    border-radius: 30px;
+    float: right;
+}
+
+.list-suscribe-form {
+	margin-top: 40px;
+    padding: 15px;
+	background-color: white;
+	color: black;
+	font-size: 16px;
+    border-radius: 30px;
+}
+
+.list-suscribe-form label {
+	text-align: right;
+	padding-right: 10px;
+    background-color: green;
+}

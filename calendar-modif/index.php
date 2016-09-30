@@ -52,6 +52,10 @@ $url_controller_mappers = array(
 	
 	new UrlControllerMapper('CalendarDisplayPendingEventsController', '`^/pending/?$`'),
 	new UrlControllerMapper('CalendarEventsListController', '`^/events_list/?$`'),
+    new UrlControllerMapper('CalendarEventParticipantsListController', '`^/event_participants_list/?$`', array('id')),
+    
+    // original julien
+    //new UrlControllerMapper('CalendarEventParticipantsListController', '`^/event_participants_list/([0-9]+)/?$`', array('id')),
 	
 	//Display calendar
 	new UrlControllerMapper('CalendarAjaxCalendarController', '`^/ajax_month_calendar/([0-9]+)?/?([0-9]+)?/?(\d{0,1})?/?$`', array('calendar_ajax_year', 'calendar_ajax_month', 'calendar_mini')),

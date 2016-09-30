@@ -83,7 +83,6 @@ $lang['calendar.labels.participants'] = 'Participants';
 $lang['calendar.labels.no_one'] = 'Personne';
 $lang['calendar.labels.suscribe'] = 'S\'inscrire';
 $lang['calendar.labels.unsuscribe'] = 'Se désinscrire';
-$lang['calendar.labels.list_suscribe'] = 'Voir liste participants';
 
 //Administration
 $lang['calendar.config.events.management'] = 'Gestion des événements';
