@@ -53,6 +53,7 @@ $lang['calendar.titles.repetition'] = 'Répétition';
 $lang['calendar.pending'] = 'Evénements en attente';
 $lang['calendar.manage'] = 'Gérer les événements';
 $lang['calendar.events_list'] = 'Liste des événements';
+$lang['calendar.event_participants_list'] = 'Voir liste';
 
 //Labels
 $lang['calendar.labels.location'] = 'Adresse';
@@ -83,6 +84,7 @@ $lang['calendar.labels.participants'] = 'Participants';
 $lang['calendar.labels.no_one'] = 'Personne';
 $lang['calendar.labels.suscribe'] = 'S\'inscrire';
 $lang['calendar.labels.unsuscribe'] = 'Se désinscrire';
+$lang['calendar.labels.participants_list'] = 'Voir liste';
 
 //Administration
 $lang['calendar.config.events.management'] = 'Gestion des événements';

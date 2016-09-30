@@ -57,6 +57,10 @@ $url_controller_mappers = array(
 	new UrlControllerMapper('CalendarAjaxCalendarController', '`^/ajax_month_calendar/([0-9]+)?/?([0-9]+)?/?(\d{0,1})?/?$`', array('calendar_ajax_year', 'calendar_ajax_month', 'calendar_mini')),
 	new UrlControllerMapper('CalendarAjaxEventsController', '`^/ajax_month_events/([0-9]+)?/?([0-9]+)?/?([0-9]+)?/?$`', array('calendar_ajax_year', 'calendar_ajax_month', 'calendar_ajax_day')),
 	new UrlControllerMapper('CalendarDisplayCategoryController', '`^/?([0-9]+)?/?([0-9]+)?/?([0-9]+)?/?$`', array('year', 'month', 'day')),
+    
+    // voir liste des participants    
+    // original julien - 
+    new UrlControllerMapper('CalendarEventParticipantsListController', '`^/event_participants_list/([0-9]+)/?$`', array('event_id')),
 );
 DispatchManager::dispatch($url_controller_mappers);
 ?>

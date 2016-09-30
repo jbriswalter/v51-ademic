@@ -189,5 +189,9 @@ class CalendarUrlBuilder
 		$calendar_anchor = $calendar_anchor !== false ? '#calendar' : '';
 		return DispatchManager::get_url(self::$dispatcher, '/' . $year . $month . $day . $calendar_anchor);
 	}
+    
+    public static function event_participants_list($id) {
+        return DispatchManager::get_url(self::$dispatcher, '/event_participants_list/' .  $id);
+    }
 }
 ?>
