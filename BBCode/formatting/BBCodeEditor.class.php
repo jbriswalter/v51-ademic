@@ -122,7 +122,7 @@ class BBCodeEditor extends ContentEditor {
             'L_BLOCK' => $bbcode_lang['bb_block'],
             'L_FIELDSET' => $bbcode_lang['bb_fieldset'],
             'L_STYLE' => $LANG['style'],
-            'L_QUESTION' => $LANG['question'],
+//            'L_QUESTION' => $LANG['question'],
             'L_NOTICE' => $LANG['notice'],
             'L_WARNING' => $LANG['warning'],
             'L_ERROR' => LangLoader::get_message('error', 'status-messages-common'),
