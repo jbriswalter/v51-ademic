@@ -173,7 +173,7 @@ class BBCodeEditor extends ContentEditor {
     }
 
     public function bidon() {
-        
+      return $toto;  
     }
 
 }
