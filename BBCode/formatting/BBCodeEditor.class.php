@@ -173,5 +173,4 @@ class BBCodeEditor extends ContentEditor {
     }
 
 }
-
 ?>
