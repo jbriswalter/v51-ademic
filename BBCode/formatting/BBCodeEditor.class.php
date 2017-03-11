@@ -172,5 +172,10 @@ class BBCodeEditor extends ContentEditor {
         return $template -> render();
     }
 
+    public function bidon() {
+        
+    }
+
 }
+
 ?>
