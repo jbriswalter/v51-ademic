@@ -1,4 +1,5 @@
 <?php
+
 /*##################################################
  *		                   GeneralConfig.class.php
  *                            -------------------
@@ -230,10 +231,5 @@ class GeneralConfig extends AbstractConfigData
 	{
 		ConfigManager::save('kernel', self::load(), 'general-config');
 	}
-    
-    public function toto($param)
-    {
-        return $toto;
-    }
 }
 ?>
