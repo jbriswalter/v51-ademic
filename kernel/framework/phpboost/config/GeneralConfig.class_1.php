@@ -235,5 +235,10 @@ class GeneralConfig extends AbstractConfigData
     {
         return;
     }
+
+    private function mimi($param)
+    {
+        return mimi;
+    }
 }
 ?>
