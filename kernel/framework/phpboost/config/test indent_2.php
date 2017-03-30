@@ -1,13 +1,13 @@
 <?php
-/* ##################################################
- * 		                   GeneralConfig.class.php
+/*##################################################
+ *		                   GeneralConfig.class.php
  *                            -------------------
  *   begin                : July 5, 2010
  *   copyright            : (C) 2010 Benoit Sautel
  *   email                : ben.popeye@phpboost.com
  *
  *
-  ###################################################
+ ###################################################
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,7 +23,7 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  *
-  ################################################### */
+ ###################################################*/
 
 /**
  * @author Benoit Sautel <ben.popeye@phpboost.com>
@@ -117,7 +117,7 @@ class GeneralConfig extends AbstractConfigData
 	{
 		$site_url = self::get_default_site_url();
 		$site_path = self::get_default_site_path();
-
+		
 		return array(
 			self::SITE_URL => $site_url,
 			self::SITE_PATH => $site_path,
@@ -149,9 +149,9 @@ class GeneralConfig extends AbstractConfigData
 
 	private static function remove_dirs_from_root($path)
 	{
-		$root_path_fragments = array();
-		$path_fragments = explode('/', $path);
-		$depth = 1;
+        $root_path_fragments = array();
+        $path_fragments = explode('/', $path);
+        $depth = 1;
 		if (!in_array(PATH_TO_ROOT, array('.', '', null)))
 		{
 			$depth = count(explode('/', PATH_TO_ROOT)) + 1;
@@ -173,7 +173,7 @@ class GeneralConfig extends AbstractConfigData
 	{
 		$this->set_property(self::SITE_NAME, $site_name);
 	}
-
+	
 	public function get_site_slogan()
 	{
 		return $this->get_property(self::SITE_SLOGAN);
@@ -229,7 +229,6 @@ class GeneralConfig extends AbstractConfigData
 	public static function save()
 	{
 		ConfigManager::save('kernel', self::load(), 'general-config');
-		$toto;
 	}
 }
 ?>
