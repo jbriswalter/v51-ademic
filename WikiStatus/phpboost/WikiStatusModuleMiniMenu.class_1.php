@@ -31,6 +31,11 @@
   class WikiStatusModuleMiniMenu extends ModuleMiniMenu
   {
 
+      private function prive($param)
+      {
+          return $mimi;
+      }
+
       public function toto($param)
       {
           return $toto2;
