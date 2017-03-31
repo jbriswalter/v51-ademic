@@ -1,0 +1,1 @@
+a:8:{s:7:"firefox";i:2334;s:7:"mozilla";i:692;s:16:"internetexplorer";i:476;s:6:"chrome";i:2747;s:6:"safari";i:612;s:5:"opera";i:47;s:5:"other";i:75;s:4:"edge";i:249;}

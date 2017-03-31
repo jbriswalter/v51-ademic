@@ -1,0 +1,1 @@
+a:8:{s:6:"google";i:7849;s:10:"unknow_bot";i:117571;s:4:"bing";i:23309;s:5:"yahoo";i:786;s:6:"yandex";i:559;s:6:"ahrefs";i:7579;s:7:"exalead";i:672;s:5:"baidu";i:638;}

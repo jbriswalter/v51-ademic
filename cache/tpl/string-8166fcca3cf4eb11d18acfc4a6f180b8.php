@@ -1,0 +1,2 @@
+<?php $_result='<input type="password" size="' . $_data->get('SIZE') . '" maxlength="' . $_data->get('MAX_LENGTH') . '" name="' . $_functions->escape($_data->get('NAME')) . '"
+	id="' . $_functions->escape($_data->get('HTML_ID')) . '" value="' . $_functions->escape($_data->get('VALUE')) . '" class="' . $_functions->escape($_data->get('CLASS')) . '" ';if ($_data->is_true($_data->get('C_DISABLED'))){$_result.=' disabled="disabled" ';}$_result.=' />'; ?>

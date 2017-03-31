@@ -1,0 +1,403 @@
+# Disable signatures protection #
+# Disable your Apache version number from showing up in HTTP headers for added security
+<IfDefine !Free>
+	<IfModule ModSecurity.c>
+		ServerSignature Off
+		SecServerSignature ''
+	</IfModule>
+</IfDefine>
+
+# Hide directory listings #
+Options -Indexes
+Options +FollowSymLinks
+Options -Multiviews
+
+# Prevent viewing of .htaccess file #
+<Files .htaccess>
+    # Apache ??? 2.3
+    <IfModule mod_authz_core.c>
+        Require all denied
+    </IfModule>
+    # Apache 2.2
+    <IfModule !mod_authz_core.c>
+        Order Allow,Deny
+        Deny from all
+    </IfModule>
+</Files>
+
+# Server protection #
+<IfDefine !Free>
+	<IfModule mod_access.c>
+		# Do Not Track: Universal Third-Party Web Tracking Opt Out
+		# http://datatracker.ietf.org/doc/draft-mayer-do-not-track/
+		SetEnvIfNoCase DNT 1 DO_NOT_TRACK
+
+		# Protect against Apache HTTP Server Denial Of Service Vulnerability.  CVE-2011-3192
+		SetEnvIf Range (,.*?){5,} bad-range=1
+		RequestHeader unset Range env=bad-range
+	</IfModule>
+</IfDefine>
+
+# HTTP Headers #
+<IfDefine !Free>
+	<IfModule mod_headers.c>
+		# Enable keep-alive
+		Header set Connection keep-alive
+		# Disable your PHP version number from showing up in HTTP headers for added security.
+		Header unset X-Powered-By
+		# Don't allow any pages to be framed externally - Defends against CSRF
+		Header set X-Frame-Options SAMEORIGIN
+		# Control Cross-Domain Policies
+		Header set X-Permitted-Cross-Domain-Policies "master-only"
+		# Turn on IE8-IE9 XSS prevention tools
+		Header set X-XSS-Protection "1; mode=block"
+		# Prevent mime based attacks
+		Header set X-Content-Type-Options "nosniff"
+		# Use this to force IE to hide that annoying browser compatibility button in the address bar.
+		# IE=edge means IE should use the latest (edge) version of its rendering engine.
+		# chrome=1 means IE should use the Chrome rendering engine if installed.
+		BrowserMatch MSIE ie
+		Header set X-UA-Compatible "IE=Edge"
+		# Disable server signature
+		Header set ServerSignature "Off"
+		Header set ServerTokens "Prod"
+	</IfModule>
+</IfDefine>
+
+# Rewrite rules #
+RewriteEngine on
+RewriteBase /
+
+# Core #
+RewriteRule ^user/pm-?([0-9]+)-?([0-9]{0,})-?([0-9]{0,})-?([0-9]{0,})-?([a-z_]{0,})\.php$ /user/pm.php?pm=$1&id=$2&p=$3&quote=$4 [L,QSA]
+RewriteRule ^admin/cache/([\w/_-]*)$ /admin/cache/index.php?url=/$1 [L,QSA]
+RewriteRule ^admin/config/([\w/_-]*)$ /admin/config/index.php?url=/$1 [L,QSA]
+RewriteRule ^admin/content/([\w/_-]*)$ /admin/content/index.php?url=/$1 [L,QSA]
+RewriteRule ^admin/errors/([\w/_-]*)$ /admin/errors/index.php?url=/$1 [L,QSA]
+RewriteRule ^admin/files/([\w/_-]*)$ /admin/files/index.php?url=/$1 [L,QSA]
+RewriteRule ^admin/langs/([\w/_-]*)$ /admin/langs/index.php?url=/$1 [L,QSA]
+RewriteRule ^admin/maintain/([\w/_-]*)$ /admin/maintain/index.php?url=/$1 [L,QSA]
+RewriteRule ^admin/member/([\w/_-]*)$ /admin/member/index.php?url=/$1 [L,QSA]
+RewriteRule ^admin/modules/([\w/_-]*)$ /admin/modules/index.php?url=/$1 [L,QSA]
+RewriteRule ^admin/server/([\w/_-]*)$ /admin/server/index.php?url=/$1 [L,QSA]
+RewriteRule ^admin/smileys/([\w/_-]*)$ /admin/smileys/index.php?url=/$1 [L,QSA]
+RewriteRule ^admin/themes/([\w/_-]*)$ /admin/themes/index.php?url=/$1 [L,QSA]
+RewriteRule ^syndication/([\w/_-]*)$ /syndication/index.php?url=/$1 [L,QSA]
+RewriteRule ^user/([\w/-_]*)$ /user/index.php?url=/$1 [L,QSA]
+
+# Modules rules #
+
+# QuestionCaptcha #
+RewriteRule ^QuestionCaptcha/([\w/_-]*)$ /QuestionCaptcha/index.php?url=/$1 [L,QSA]
+
+# ReCaptcha #
+RewriteRule ^ReCaptcha/([\w/_-]*)$ /ReCaptcha/index.php?url=/$1 [L,QSA]
+
+# articles #
+RewriteRule ^articles/([\w/_-]*)$ /articles/index.php?url=/$1 [L,QSA]
+
+# calendar #
+RewriteRule ^calendar/([\w/_-]*)$ /calendar/index.php?url=/$1 [L,QSA]
+
+# contact #
+RewriteRule ^contact/([\w/_-]*)$ /contact/index.php?url=/$1 [L,QSA]
+
+# database #
+RewriteRule ^database/([\w/_-]*)$ /database/index.php?url=/$1 [L,QSA]
+
+# gallery #
+RewriteRule ^gallery/gallery-([0-9]+)-?([0-9]*)-?([0-9]*)(\+?[^.]*)\.php$ /gallery/gallery.php?cat=$1&id=$2&p=$3 [L,QSA]
+
+# gallery #
+RewriteRule ^gallery/([\w/_-]*)$ /gallery/index.php?url=/$1 [L,QSA]
+
+# guestbook #
+RewriteRule ^guestbook/([\w/_-]*)$ /guestbook/index.php?url=/$1 [L,QSA]
+
+# media #
+RewriteRule ^media/media-([0-9]+)-?([0-9]*)-?([0-9]*)(\+?[^.]*)\.php$ /media/media.php?id=$1&cat=$2&p=$3 [L,QSA]
+
+# media #
+RewriteRule ^media/([\w/_-]*)$ /media/index.php?url=/$1 [L,QSA]
+
+# news #
+RewriteRule ^news/([\w/_-]*)$ /news/index.php?url=/$1 [L,QSA]
+
+# online #
+RewriteRule ^online/([\w/_-]*)$ /online/index.php?url=/$1 [L,QSA]
+
+# pages #
+RewriteRule ^pages/([a-z0-9-]+)$ /pages/pages.php?title=$1
+
+# poll #
+RewriteRule ^poll/poll-([0-9]+)-?([0-9]*)-?([0-9]*)\.php$ /poll/poll.php?id=$1&r=$2&p=$3 [L,QSA]
+
+# sitemap #
+RewriteRule ^sitemap/([\w/_-]*)$ /sitemap/index.php?url=/$1 [L,QSA]
+
+# stats #
+RewriteRule ^stats/stats-([a-z]+)\.php$ /stats/stats.php?$1=1 [L,QSA]
+
+# web #
+RewriteRule ^web/([\w/_-]*)$ /web/index.php?url=/$1 [L,QSA]
+
+# wiki #
+RewriteRule ^wiki/([a-z0-9-]+)/?$ /wiki/wiki.php?title=$1
+
+# customization #
+RewriteRule ^customization/([\w/_-]*(?:\.css)?)$ /customization/index.php?url=/$1 [L,QSA]
+
+# smallads #
+RewriteRule ^smallads/([\w/_-]*)$ /smallads/index.php?url=/$1 [L,QSA]
+
+# UrlUpdater #
+RewriteRule ^download/download\.php$ /download/ [L,R=301]
+RewriteRule ^download/download-2(\+?[^.]*)\.php$ /download/2-documents-du-club/2-reglement-interieur-du-club [L,R=301]
+RewriteRule ^download/file-2(\+?[^.]*)\.php$ /download/2-documents-du-club/2-reglement-interieur-du-club [L,R=301]
+RewriteRule ^download/download-5(\+?[^.]*)\.php$ /download/3-documents-publics/5-inscription-club [L,R=301]
+RewriteRule ^download/file-5(\+?[^.]*)\.php$ /download/3-documents-publics/5-inscription-club [L,R=301]
+RewriteRule ^download/count\.php?id=([0-9]*)$ /download/download/$1 [L,R=301]
+RewriteRule ^download/category-0(-?[^.]*)\.php$ /download/0-root/ [L,R=301]
+RewriteRule ^download/category-2(-?[^.]*)\.php$ /download/2-documents-du-club/ [L,R=301]
+RewriteRule ^download/category-3(-?[^.]*)\.php$ /download/3-documents-publics/ [L,R=301]
+RewriteRule ^faq/faq\.php$ /faq/ [L,R=301]
+RewriteRule ^faq/faq-0(\+?[^.]*)\.php$ /faq/0-root/ [L,R=301]
+RewriteRule ^faq/faq-1(\+?[^.]*)\.php$ /faq/1-phpboost/ [L,R=301]
+RewriteRule ^faq/faq-2(\+?[^.]*)\.php$ /faq/2-dictionnaire/ [L,R=301]
+RewriteRule ^shoutbox/shoutbox\.php$ /shoutbox/ [L,R=301]
+RewriteRule ^web/web\.php$ /web/ [L,R=301]
+RewriteRule ^web/web-3-3([^.]*)\.php$ /web/3-ffam/3-federation-francaise-d-aeromodelisme [L,R=301]
+RewriteRule ^web/web-4-4([^.]*)\.php$ /web/4-club-voisin/4-club-de-la-roche-sur-yon [L,R=301]
+RewriteRule ^web/web-5-5([^.]*)\.php$ /web/5-forum/5-modelisme-com [L,R=301]
+RewriteRule ^web/web-0-6([^.]*)\.php$ /web/0-root/6-la-gazette-des-olonnes [L,R=301]
+RewriteRule ^web/web-0(-?[^.]*)\.php$ /web/0-root/ [L,R=301]
+RewriteRule ^web/web-3(-?[^.]*)\.php$ /web/3-ffam/ [L,R=301]
+RewriteRule ^web/web-4(-?[^.]*)\.php$ /web/4-club-voisin/ [L,R=301]
+RewriteRule ^web/web-5(-?[^.]*)\.php$ /web/5-forum/ [L,R=301]
+RewriteRule ^download/download\.php$ /download/ [L,R=301]
+RewriteRule ^download/download-2(\+?[^.]*)\.php$ /download/2-documents-du-club/2-reglement-interieur-du-club [L,R=301]
+RewriteRule ^download/file-2(\+?[^.]*)\.php$ /download/2-documents-du-club/2-reglement-interieur-du-club [L,R=301]
+RewriteRule ^download/download-5(\+?[^.]*)\.php$ /download/3-documents-publics/5-inscription-club [L,R=301]
+RewriteRule ^download/file-5(\+?[^.]*)\.php$ /download/3-documents-publics/5-inscription-club [L,R=301]
+RewriteRule ^download/count\.php?id=([0-9]*)$ /download/download/$1 [L,R=301]
+RewriteRule ^download/category-0(-?[^.]*)\.php$ /download/0-root/ [L,R=301]
+RewriteRule ^download/category-2(-?[^.]*)\.php$ /download/2-documents-du-club/ [L,R=301]
+RewriteRule ^download/category-3(-?[^.]*)\.php$ /download/3-documents-publics/ [L,R=301]
+RewriteRule ^faq/faq\.php$ /faq/ [L,R=301]
+RewriteRule ^faq/faq-0(\+?[^.]*)\.php$ /faq/0-root/ [L,R=301]
+RewriteRule ^faq/faq-1(\+?[^.]*)\.php$ /faq/1-phpboost/ [L,R=301]
+RewriteRule ^faq/faq-2(\+?[^.]*)\.php$ /faq/2-dictionnaire/ [L,R=301]
+RewriteRule ^shoutbox/shoutbox\.php$ /shoutbox/ [L,R=301]
+RewriteRule ^web/web\.php$ /web/ [L,R=301]
+RewriteRule ^web/web-3-3([^.]*)\.php$ /web/3-ffam/3-federation-francaise-d-aeromodelisme [L,R=301]
+RewriteRule ^web/web-4-4([^.]*)\.php$ /web/4-club-voisin/4-club-de-la-roche-sur-yon [L,R=301]
+RewriteRule ^web/web-5-5([^.]*)\.php$ /web/5-forum/5-modelisme-com [L,R=301]
+RewriteRule ^web/web-0-6([^.]*)\.php$ /web/0-root/6-la-gazette-des-olonnes [L,R=301]
+RewriteRule ^web/web-0(-?[^.]*)\.php$ /web/0-root/ [L,R=301]
+RewriteRule ^web/web-3(-?[^.]*)\.php$ /web/3-ffam/ [L,R=301]
+RewriteRule ^web/web-4(-?[^.]*)\.php$ /web/4-club-voisin/ [L,R=301]
+RewriteRule ^web/web-5(-?[^.]*)\.php$ /web/5-forum/ [L,R=301]
+
+# download #
+RewriteRule ^download/([\w/_-]*)$ /download/index.php?url=/$1 [L,QSA]
+
+# PHP and HTTP protections #
+# Disable the HTTP TRACE Method
+RewriteCond %{REQUEST_METHOD} ^TRACE
+RewriteRule .* - [F]
+
+# Block out use of illegal or unsafe characters in the HTTP Request
+RewriteCond %{THE_REQUEST} ^.*(\r|\n|%0A|%0D).* [NC,OR]
+# Block out use of illegal or unsafe characters in the Referer Variable of the HTTP Request
+RewriteCond %{HTTP_REFERER} ^(.*)(<|>|'|%0A|%0D|%27|%3C|%3E|%00).* [NC]
+RewriteRule .* - [F,L]
+
+# Protect against PHP-CGI Remote Code Execution Bug. CVE-2012-1823
+RewriteCond %{QUERY_STRING} ^(%2d|\-)[^=]+$ [NC]
+RewriteRule .* - [F,L]
+
+# Stop 'PHP Easter Eggs' from working, http://perishablepress.com/expose-php/
+RewriteCond %{QUERY_STRING} \=PHP[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12} [NC,OR]
+# Stop proc/self/environ?
+RewriteCond %{QUERY_STRING} proc/self/environ [OR]
+# Block out any script trying to set a mosConfig value through the URL
+RewriteCond %{QUERY_STRING} mosConfig_[a-zA-Z_]{1,21}(=|\%3D) [OR]
+# Block out any script trying to base64_encode/decode content via URL
+RewriteCond %{QUERY_STRING} base64_(en|de)code[^(]*\([^)]*\) [OR]
+# Block out any script that includes a <script> tag in URL
+RewriteCond %{QUERY_STRING} (<|%3C)([^s]*s)+cript.*(>|%3E) [NC,OR]
+# Block out any script trying to set a PHP GLOBALS variable via URL
+RewriteCond %{QUERY_STRING} GLOBALS(=|[|\%[0-9A-Z]{0,2}) [OR]
+# Block out any script trying to modify a _REQUEST variable via URL
+RewriteCond %{QUERY_STRING} _REQUEST(=|[|\%[0-9A-Z]{0,2})
+RewriteRule .* - [F,L]
+
+# File and SQL injections protections #
+RewriteCond %{REQUEST_METHOD} GET
+RewriteCond %{QUERY_STRING} (;|<|>|'|"|\)|%0A|%0D|%22|%27|%3C|%3E|%00).*(/\*|union|select|insert|cast|set|declare|drop|update|md5|benchmark) [NC,OR]
+RewriteCond %{QUERY_STRING} [a-zA-Z0-9_]=http:// [OR]
+RewriteCond %{QUERY_STRING} [a-zA-Z0-9_]=http%3A%2F%2F [OR]
+RewriteCond %{QUERY_STRING} [a-zA-Z0-9_]=(\.\.//?)+ [OR]
+RewriteCond %{QUERY_STRING} (localhost|loopback|127\.0\.0\.1) [NC,OR]
+RewriteCond %{QUERY_STRING} (<|>|'|%0A|%0D|%27|%3C|%3E|%00) [NC]
+RewriteRule .* - [F,L]
+
+# Bandwith protection #
+RewriteCond %{HTTP_REFERER} !^$
+RewriteCond %{HTTP_REFERER} !^http://aeromodelisme-sablais.fr
+RewriteRule .*upload/.*$ - [F]
+
+# Stop hotlinking #
+RewriteCond %{HTTP_REFERER} !^$
+RewriteCond %{HTTP_REFERER} !^http://aeromodelisme-sablais.fr
+RewriteRule \.(bmp|gif|jpe?g|png|swf)$ - [F,L,NC]
+
+# Bots blocking protection #
+# URL encoded HTML, see http://www.w3schools.com/tags/ref_urlencode.asp
+RewriteCond %{HTTP_USER_AGENT} (<|>|'|%0A|%0D|%27|%3C|%3E|%00) [NC,OR]
+# Address harvesters
+RewriteCond %{HTTP_USER_AGENT} ^(autoemailspider|ExtractorPro) [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} ^E?Mail.?(Collect|Harvest|Magnet|Reaper|Siphon|Sweeper|Wolf) [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} (DTS.?Agent|Email.?Extrac) [NC,OR]
+RewriteCond %{HTTP_REFERER} iaea\.org [NC,OR]
+# Download managers
+RewriteCond %{HTTP_USER_AGENT} ^(Alligator|DA.?[0-9]|DC\-Sakura|Download.?(Demon|Express|Master|Wonder)|FileHound) [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} ^(Flash|Leech)Get [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} ^(Fresh|Lightning|Mass|Real|Smart|Speed|Star).?Download(er)? [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} ^(Gamespy|Go!Zilla|iGetter|JetCar|Net(Ants|Pumper)|SiteSnagger|Teleport.?Pro|WebReaper) [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} ^(My)?GetRight [NC,OR]
+# Image-grabbers
+RewriteCond %{HTTP_USER_AGENT} ^(AcoiRobot|FlickBot|webcollage) [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} ^(Express|Mister|Web).?(Web|Pix|Image).?(Pictures|Collector)? [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} ^Image.?(fetch|Stripper|Sucker) [NC,OR]
+# "Gray-hats"
+RewriteCond %{HTTP_USER_AGENT} ^(Atomz|BlackWidow|BlogBot|EasyDL|Marketwave|Sqworm|SurveyBot|Webclipping\.com) [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} (girafa\.com|gossamer\-threads\.com|grub\-client|Netcraft|Nutch) [NC,OR]
+# Site-grabbers
+RewriteCond %{HTTP_USER_AGENT} ^(eCatch|(Get|Super)Bot|Kapere|HTTrack|JOC|Offline|UtilMind|Xaldon) [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} ^Web.?(Auto|Cop|dup|Fetch|Filter|Gather|Go|Leach|Mine|Mirror|Pix|QL|RACE|Sauger) [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} ^Web.?(site.?(eXtractor|Quester)|Snake|ster|Strip|Suck|vac|walk|Whacker|ZIP) [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} WebCapture [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} ^DISCo\ Pump [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} ^EirGrabber [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} ^Net\ Vampire [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} ^NetZIP [NC,OR]
+# Tools
+RewriteCond %{HTTP_USER_AGENT} ^(Dart.?Communications|Enfish|htdig|Java|larbin) [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} (FrontPage|Indy.?Library|RPT\-HTTPClient) [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} ^(libwww|lwp|libwww-perl.*|PHP|Python|www\.thatrobotsite\.com|webbandit|Zeus) [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} ^(Microsoft|MFC).(Data|Internet|URL|WebDAV|Foundation).(Access|Explorer|Control|MiniRedir|Class) [NC,OR]
+# Unknown
+RewriteCond %{HTTP_USER_AGENT} ^(Crawl_Application|Lachesis|Nutscrape) [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} ^[CDEFPRS](Browse|Eval|Surf) [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} ^(Demo|Full.?Web|Lite|Production|Franklin|Missauga|Missigua).?(Bot|Locat) [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} (efp@gmx\.net|hhjhj@yahoo\.com|lerly\.net|mapfeatures\.net|metacarta\.com) [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} ^(Industry|Internet|IUFW|Lincoln|Missouri|Program).?(Program|Explore|Web|State|College|Shareware) [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} ^(Mac|Ram|Educate|WEP).?(Finder|Search) [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} ^(Moz+illa|MSIE).?[0-9]?.?[0-9]?[0-9]?$ [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} ^Mozilla/[0-9]\.[0-9][0-9]?.\(compatible[\)\ ] [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} NaverRobot [NC]
+RewriteRule .* - [F,L]
+
+# Error pages #
+ErrorDocument 403 /user/error/403/
+ErrorDocument 404 /user/error/404/
+
+# Gzip compression #
+<IfDefine !Free>
+	<IfModule mod_filter.c>
+		<IfModule mod_deflate.c>
+			# Compress HTML, CSS, JavaScript, Text, XML and fonts
+			AddOutputFilterByType DEFLATE application/javascript
+			AddOutputFilterByType DEFLATE application/rss+xml
+			AddOutputFilterByType DEFLATE application/vnd.ms-fontobject
+			AddOutputFilterByType DEFLATE application/x-font
+			AddOutputFilterByType DEFLATE application/x-font-opentype
+			AddOutputFilterByType DEFLATE application/x-font-otf
+			AddOutputFilterByType DEFLATE application/x-font-truetype
+			AddOutputFilterByType DEFLATE application/x-font-ttf
+			AddOutputFilterByType DEFLATE application/x-javascript
+			AddOutputFilterByType DEFLATE application/xhtml+xml
+			AddOutputFilterByType DEFLATE application/xml
+			AddOutputFilterByType DEFLATE font/opentype
+			AddOutputFilterByType DEFLATE font/otf
+			AddOutputFilterByType DEFLATE font/ttf
+			AddOutputFilterByType DEFLATE image/svg+xml
+			AddOutputFilterByType DEFLATE image/x-icon
+			AddOutputFilterByType DEFLATE text/css
+			AddOutputFilterByType DEFLATE text/html
+			AddOutputFilterByType DEFLATE text/javascript
+			AddOutputFilterByType DEFLATE text/plain
+			AddOutputFilterByType DEFLATE text/xml
+
+			# Remove browser bugs (only needed for really old browsers)
+			BrowserMatch ^Mozilla/4 gzip-only-text/html
+			BrowserMatch ^Mozilla/4\.0[678] no-gzip
+			BrowserMatch \bMSIE !no-gzip !gzip-only-text/html
+			<IfModule mod_headers.c>
+				Header append Vary User-Agent
+			</IfModule>
+		</IfModule>
+	</IfModule>
+</IfDefine>
+
+# Expires Headers #
+<IfDefine !Free>
+	<IfModule mod_expires.c>
+		ExpiresActive On
+
+		# Default expiration: 1 week after request
+		ExpiresDefault "access plus 1 week"
+
+		# CSS and JS expiration: 1 week after request
+		ExpiresByType text/css "access plus 1 week"
+		ExpiresByType text/javascript "access plus 1 week"
+		ExpiresByType text/x-javascript "access plus 1 week"
+		ExpiresByType application/javascript "access plus 1 week"
+		ExpiresByType application/x-javascript "access plus 1 week"
+
+		# Image files expiration: 1 month after request
+		ExpiresByType image/bmp "access plus 1 month"
+		ExpiresByType image/gif "access plus 1 month"
+		ExpiresByType image/jpeg "access plus 1 month"
+		ExpiresByType image/jp2 "access plus 1 month"
+		ExpiresByType image/pipeg "access plus 1 month"
+		ExpiresByType image/png "access plus 1 month"
+		ExpiresByType image/svg+xml "access plus 1 month"
+		ExpiresByType image/tiff "access plus 1 month"
+		ExpiresByType image/vnd.microsoft.icon "access plus 1 month"
+		ExpiresByType image/x-icon "access plus 1 month"
+		ExpiresByType image/ico "access plus 1 month"
+		ExpiresByType image/icon "access plus 1 month"
+		ExpiresByType text/ico "access plus 1 month"
+		ExpiresByType application/ico "access plus 1 month"
+		ExpiresByType image/vnd.wap.wbmp "access plus 1 month"
+		ExpiresByType application/vnd.wap.wbxml "access plus 1 month"
+		ExpiresByType application/smil "access plus 1 month"
+
+		# Audio files expiration: 1 month after request
+		ExpiresByType audio/basic "access plus 1 month"
+		ExpiresByType audio/mid "access plus 1 month"
+		ExpiresByType audio/midi "access plus 1 month"
+		ExpiresByType audio/mpeg "access plus 1 month"
+		ExpiresByType audio/x-aiff "access plus 1 month"
+		ExpiresByType audio/x-mpegurl "access plus 1 month"
+		ExpiresByType audio/x-pn-realaudio "access plus 1 month"
+		ExpiresByType audio/x-wav "access plus 1 month"
+
+		# Movie files expiration: 1 month after request
+		ExpiresByType application/x-shockwave-flash "access plus 1 month"
+		ExpiresByType x-world/x-vrml "access plus 1 month"
+		ExpiresByType video/x-msvideo "access plus 1 month"
+		ExpiresByType video/mpeg "access plus 1 month"
+		ExpiresByType video/mp4 "access plus 1 month"
+		ExpiresByType video/quicktime "access plus 1 month"
+		ExpiresByType video/x-la-asf "access plus 1 month"
+		ExpiresByType video/x-ms-asf "access plus 1 month"
+	</IfModule>
+</IfDefine>
+
+# Disable file etags #
+<IfDefine !Free>
+	FileETag none
+</IfDefine>

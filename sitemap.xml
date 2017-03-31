@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="windows-1252"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+		<url>
+		<loc>http://aeromodelisme-sablais.fr/index.php</loc>
+		
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+
+
+		<url>
+		<loc>http://aeromodelisme-sablais.fr/articles/</loc>
+		
+		<changefreq>daily</changefreq>
+		<priority>1</priority>
+	</url>
+
+		<url>
+		<loc>http://aeromodelisme-sablais.fr/articles/1-vie-du-club/</loc>
+		
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+
+		<url>
+		<loc>http://aeromodelisme-sablais.fr/articles/2-avions/</loc>
+		
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+
+		<url>
+		<loc>http://aeromodelisme-sablais.fr/articles/3-planeurs/</loc>
+		
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+
+		<url>
+		<loc>http://aeromodelisme-sablais.fr/articles/4-helicopteres/</loc>
+		
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+
+		<url>
+		<loc>http://aeromodelisme-sablais.fr/articles/5-drones/</loc>
+		
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+
+		<url>
+		<loc>http://aeromodelisme-sablais.fr/articles/6-securite/</loc>
+		
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+
+
+		<url>
+		<loc>http://aeromodelisme-sablais.fr/calendar/</loc>
+		
+		<changefreq>daily</changefreq>
+		<priority>1</priority>
+	</url>
+
+
+		<url>
+		<loc>http://aeromodelisme-sablais.fr/gallery/</loc>
+		
+		<changefreq>daily</changefreq>
+		<priority>1</priority>
+	</url>
+
+		<url>
+		<loc>http://aeromodelisme-sablais.fr/gallery/gallery-1+nos-photos.php</loc>
+		
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+
+		<url>
+		<loc>http://aeromodelisme-sablais.fr/gallery/gallery-2+p-tits-gros-15-08-2016.php</loc>
+		
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+
+
+		<url>
+		<loc>http://aeromodelisme-sablais.fr/web/</loc>
+		
+		<changefreq>daily</changefreq>
+		<priority>1</priority>
+	</url>
+
+		<url>
+		<loc>http://aeromodelisme-sablais.fr/web/3-ffam/</loc>
+		
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+
+		<url>
+		<loc>http://aeromodelisme-sablais.fr/web/4-club-voisin/</loc>
+		
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+
+		<url>
+		<loc>http://aeromodelisme-sablais.fr/web/5-forum/</loc>
+		
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+
+
+		<url>
+		<loc>http://aeromodelisme-sablais.fr/media/</loc>
+		
+		<changefreq>daily</changefreq>
+		<priority>1</priority>
+	</url>
+
+
+		<url>
+		<loc>http://aeromodelisme-sablais.fr/news/</loc>
+		
+		<changefreq>daily</changefreq>
+		<priority>1</priority>
+	</url>
+
+		<url>
+		<loc>http://aeromodelisme-sablais.fr/news/3-inter-clubs/</loc>
+		
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+
+
+		<url>
+		<loc>http://aeromodelisme-sablais.fr/pages/explorer.php</loc>
+		
+		<changefreq>monthly</changefreq>
+		<priority>1</priority>
+	</url>
+
+
+		<url>
+		<loc>http://aeromodelisme-sablais.fr/download/</loc>
+		
+		<changefreq>daily</changefreq>
+		<priority>1</priority>
+	</url>
+
+
+		<url>
+		<loc>http://aeromodelisme-sablais.fr/wiki/wiki.php</loc>
+		
+		<changefreq>monthly</changefreq>
+		<priority>0.25</priority>
+	</url>
+
+
+</urlset>

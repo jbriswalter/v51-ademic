@@ -1,0 +1,1 @@
+<?php $enable_apc = true;
