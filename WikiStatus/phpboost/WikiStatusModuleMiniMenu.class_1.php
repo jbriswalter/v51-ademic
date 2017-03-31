@@ -33,7 +33,7 @@
 
       public function toto($param)
       {
-          return $toto;
+          return $toto2;
       }
 
       public function get_default_block()
