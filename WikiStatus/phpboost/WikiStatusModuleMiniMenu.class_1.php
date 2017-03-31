@@ -31,6 +31,11 @@
   class WikiStatusModuleMiniMenu extends ModuleMiniMenu
   {
 
+      public function toto($param)
+      {
+          return $toto;
+      }
+
       public function get_default_block()
       {
           return self::BLOCK_POSITION__BOTTOM_CENTRAL;
